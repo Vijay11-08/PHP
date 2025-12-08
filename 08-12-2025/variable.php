@@ -48,7 +48,6 @@ echo "$x + $y =" . add();
 <br>
 
 
-
 <ul>Static Variable</ul>
 <?php
 # Static Variable
