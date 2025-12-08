@@ -16,8 +16,9 @@ echo "Hello, I am Computer Engineer";   // using echo statement
 print  "Hello, I am IT Student";        // using print statement
 ?>
 
+<br>
 
-<?php
+<?php                   // Comments in PHP
 // Single line comment
 #  This is also single line comment
 
@@ -25,4 +26,22 @@ print  "Hello, I am IT Student";        // using print statement
 /*
 multiple-lines comment 
 */
+
+?>
+
+
+<br>
+
+
+<?php                    // Variables in PHP
+$var1 = "Hello World";   // string variable
+$var2 = 123;             // integer variable
+$var3 = 12.34;           // float variable
+$var4 = true;            // boolean variable
+
+echo $var1;
+echo $var2;
+echo $var3;
+echo $var4;
+
 ?>
