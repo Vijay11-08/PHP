@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths Function</title>
+
+</head>
+
+<body>
+    <h1>Math Functions in JavaScript</h1>
+
+
+    <h4>1. Math.round():</h4>
+    <ul>
+        <li>Rounds a number to the nearest integer.</li>
+        <li>If decimal ≥ 0.5 → rounds UP</li>
+        <li>If decimal < 0.5 → rounds DOWN</li>
+    </ul>
+    <script>
+        const num = 4.7;
+        const rounded = Math.round(num); // 5
+        document.write("Rounded value of " + num + " is " + rounded);
+    </script>
+
+
+    <h4>2. Math.floor():</h4>
+    <ul>
+        <li>Always rounds DOWN to the nearest integer.</li>
+        <li>Useful when you always want a lower value (ex: index, pagination).</li>
+    </ul>
+    <script>
+        const num2 = 4.7;
+        const floored = Math.floor(num2); // 4
+        document.write("<br>Floored value of " + num2 + " is " + floored);
+    </script>
+
+
+    <h4>3. Math.ceil():</h4>
+    <ul>
+        <li>Always rounds UP to the next nearest integer.</li>
+        <li>Useful when you always want a higher value.</li>
+    </ul>
+    <script>
+        const num3 = 4.2;
+        const ceiled = Math.ceil(num3); // 5
+        const num4 = 3.9;
+        document.write("<br>Ceiled value of " + num3 + " is " + ceiled);
+        document.write("<br>Ceiled value of " + num4 + " is " + Math.ceil(num4));
+    </script>
+
+
+    <h4>4. Math.random():</h4>
+    <ul>
+        <li>Generates a random decimal number between 0 (inclusive) and 1 (exclusive).</li>
+        <li>To get a random number within a specific range, you can scale and shift the result.</li>
+    </ul>
+    <script>
+        const randomNum = Math.random(); // Random number between 0 and 1
+        document.write("<br>Random number between 0 and 1: " + randomNum);
+    </script>
+
+
+    <h4>5. Math.abs():</h4>
+    <ul>
+        <li>Returns the absolute value of a number (non-negative value).</li>
+        <li>Used when only magnitude is needed, not sign.</li>
+    </ul>
+    <script>
+        const negativeNum = -10;
+        const absoluteValue = Math.abs(negativeNum); // 10
+        document.write("<br>Absolute value of " + negativeNum + " is " + absoluteValue);
+    </script>
+
+
+    <h4>6. Math.sqrt():</h4>
+    <ul>
+        <li>Calculates the square root of a number.</li>
+        <li>Useful in geometry, physics, and statistics.</li>
+    </ul>
+    <script>
+        const num5 = 16;
+        const squareRoot = Math.sqrt(num5); // 4
+        document.write("<br>Square root of " + num5 + " is " + squareRoot);
+    </script>
+
+
+    <h4>7. Math.max() and Math.min():</h4>
+    <ul>
+        <li>Math.max(): Returns the largest of the given numbers.</li>
+        <li>Math.min(): Returns the smallest of the given numbers.</li>
+        <li>Finding highest/lowest values in a list.</li>
+    </ul>
+    <script>
+        const maxNum = Math.max(10, 20, 5, 15); // 20
+        const minNum = Math.min(10, 20, 5, 15); // 5
+        document.write("<br>Maximum number is " + maxNum);
+        document.write("<br>Minimum number is " + minNum);
+    </script>
+
+
+    <h4>8. Math.pow():</h4>
+    <ul>
+        <li>Calculates the power of a number (base raised to the exponent).</li>
+        <li>Useful in calculations involving Exponents, formulas, interest calculations.</li>
+    </ul>
+    <script>
+        const base = 2;
+        const exponent = 3;
+        const power = Math.pow(base, exponent); // 8
+        document.write("<br>" + base + " raised to the power of " + exponent + " is " + power);
+    </script>
+
+
+    <h4>9. Math.PI and Math.E: </h4>
+    <ul>
+        <li>Math.PI: Represents the mathematical constant π (approximately 3.14159).</li>
+        <li>Math.E: Represents Euler's number e (approximately 2.71828), the base of natural logarithms.</li>
+        <li>Used in formulas involving circles, trigonometry, and natural logarithms.</li>
+    </ul>
+    <script>
+        document.write("<br>Value of PI: " + Math.PI);
+        document.write("<br>Value of E: " + Math.E);
+    </script>
+
+
+    <h4>10. Math.sin(), Math.cos(), and Math.tan():</h4>
+    <ul>
+        <li>Math.sin(): Returns the sine of a number (in radians).</li>
+        <li>Math.cos(): Returns the cosine of a number (in radians).</li>
+        <li>Math.tan(): Returns the tangent of a number (in radians).</li>
+        <li>Used in trigonometric calculations, geometry, and physics.</li>
+    </ul>
+    <script>
+        const angle = Math.PI / 4; // 45 degrees in radians
+        const sine = Math.sin(angle); // ~0.707
+        const cosine = Math.cos(angle); // ~0.707
+        const tangent = Math.tan(angle); // ~1
+        document.write("<br>Sine of 45 degrees: " + sine);
+        document.write("<br>Cosine of 45 degrees: " + cosine);
+        document.write("<br>Tangent of 45 degrees: " + tangent);
+    </script>
+
+
+    <h4>11. Math.log(), Math.log10(), and Math.exp():</h4>
+    <ul>
+        <li>Math.log(): Returns the natural logarithm (base e) of a number.</li>
+        <li>Math.log10(): Returns the base-10 logarithm of a number.</li>
+        <li>Math.exp(): Returns e raised to the power of a given number.</li>
+        <li>Used in exponential growth/decay calculations, scientific computations.</li>
+    </ul>
+    <script>
+        const num6 = 10;
+        const naturalLog = Math.log(num6); // ~2.302
+        const logBase10 = Math.log10(num6); // 1
+        const expValue = Math.exp(2); // ~7.389
+        document.write("<br>Natural logarithm of " + num6 + " is " + naturalLog);
+        document.write("<br>Base-10 logarithm of " + num6 + " is " + logBase10);
+        document.write("<br>e raised to the power of 2 is " + expValue);
+    </script>
+
+</body>
+
+</html>
