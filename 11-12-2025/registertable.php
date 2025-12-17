@@ -16,4 +16,6 @@ if ($con->query($sql) === TRUE) {
 } else {
     echo "Error creating table: " . $con->error;
 }
+
+        
 ?>

@@ -1,0 +1,138 @@
+:root {
+    --primary: #4a90e2;
+    --secondary: #f5f6fa;
+    --text: #2c3e50;
+    --danger: #e74c3c;
+    --success: #2ecc71;
+    --warning: #f1c40f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: opacity 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-add {
+    background-color: var(--primary);
+}
+
+.btn-update {
+    background-color: var(--warning);
+    color: #333;
+}
+
+.btn-delete {
+    background-color: var(--danger);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-edit {
+    background-color: var(--warning);
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: #333;
+    margin-right: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    background: var(--secondary);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+li:hover {
+    transform: translateX(5px);
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.task-text {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.empty-state {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    margin-top: 20px;
+}

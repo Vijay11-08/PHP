@@ -1,0 +1,92 @@
+:root {
+    --bg-color: #212529;
+    --calc-bg: rgba(255, 255, 255, 0.1);
+    --text-color: #f8f9fa;
+    --btn-bg: rgba(255, 255, 255, 0.05);
+    --btn-hover: rgba(255, 255, 255, 0.2);
+    --operator-color: #ff9f43;
+    --equal-color: #2ecc71;
+    --clear-color: #e74c3c;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-color);
+}
+
+.calculator {
+    background: var(--calc-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 320px;
+}
+
+#display {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 2rem;
+    color: white;
+    text-align: right;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+button {
+    background: var(--btn-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.25rem;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+button:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.btn-op {
+    color: var(--operator-color);
+    font-weight: bold;
+}
+
+.btn-clear {
+    color: var(--clear-color);
+}
+
+.btn-equal {
+    background: var(--equal-color);
+    color: #fff;
+    grid-column: span 2;
+    /* Make equals button wider */
+}
+
+.btn-equal:hover {
+    background: #27ae60;
+}
