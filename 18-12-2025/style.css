@@ -1,0 +1,125 @@
+:root {
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --bg: #dfe6e9;
+    --text: #2d3436;
+    --error: #d63031;
+    --success: #00b894;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 2rem;
+    color: var(--text);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #636e72;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #b2bec3;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #5649c0;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background: #fab1a0;
+    color: #d63031;
+}
+
+.alert-success {
+    background: #55efc4;
+    color: #006266;
+}
+
+.link {
+    margin-top: 15px;
+    display: block;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.dashboard-container {
+    max-width: 800px;
+    text-align: left;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-logout {
+    background: var(--error);
+    width: auto;
+    padding: 10px 20px;
+}
