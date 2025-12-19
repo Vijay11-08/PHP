@@ -10,22 +10,38 @@ $path_adjust = isset($pathAdjust) ? $pathAdjust : '../';
     <ul class="nav-links">
         <?php if($role === 'admin'): ?>
             <li class="nav-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li class="nav-item"><a href="manage_users.php"><i class="fas fa-users-cog"></i> Users</a></li>
-            <li class="nav-item"><a href="add_user.php"><i class="fas fa-user-plus"></i> Add User</a></li>
-            <li class="nav-item"><a href="results.php"><i class="fas fa-trophy"></i> Results</a></li>
+            <li class="nav-item"><a href="manage_users.php"><i class="fas fa-users"></i> Users</a></li>
+            <li class="nav-item"><a href="manage_drives.php"><i class="fas fa-hdd"></i> Drive</a></li>
+            <li class="nav-item"><a href="manage_companies.php"><i class="fas fa-building"></i> Company</a></li>
+            <li class="nav-item"><a href="results.php"><i class="fas fa-trophy"></i> Result</a></li>
+            <li class="nav-item"><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li class="nav-item"><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
             
         <?php elseif($role === 'student'): ?>
-            <li class="nav-item"><a href="dashboard.php"><i class="fas fa-briefcase"></i> Jobs</a></li>
+            <li class="nav-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="drive.php"><i class="fas fa-hdd"></i> Drive</a></li>
+            <li class="nav-item"><a href="company.php"><i class="fas fa-building"></i> Company</a></li>
+            <li class="nav-item"><a href="results.php"><i class="fas fa-trophy"></i> Result</a></li>
             <li class="nav-item"><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a></li>
             <li class="nav-item"><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
             
         <?php elseif($role === 'faculty'): ?>
-            <li class="nav-item"><a href="dashboard.php"><i class="fas fa-chart-pie"></i> Overview</a></li>
-            <li class="nav-item"><a href="results.php"><i class="fas fa-list-alt"></i> Results</a></li>
-            <li class="nav-item"><a href="companies_list.php"><i class="fas fa-building"></i> Companies</a></li>
+            <li class="nav-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="manage_drives.php"><i class="fas fa-hdd"></i> Manage Drive</a></li>
+            <li class="nav-item"><a href="manage_companies.php"><i class="fas fa-building"></i> Manage Company</a></li>
+            <li class="nav-item"><a href="results.php"><i class="fas fa-trophy"></i> Result</a></li>
+            <li class="nav-item"><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li class="nav-item"><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
+            <li class="nav-item"><a href="company_register_student.php"><i class="fas fa-user-plus"></i> Company Register Student</a></li>
             
         <?php elseif($role === 'company' || $role === 'recruiter'): ?>
-            <li class="nav-item"><a href="dashboard.php"><i class="fas fa-business-time"></i> Job Drives</a></li>
+            <li class="nav-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="drive.php"><i class="fas fa-hdd"></i> Drive</a></li>
+            <li class="nav-item"><a href="manage_students.php"><i class="fas fa-user-graduate"></i> Manage Students</a></li>
+            <li class="nav-item"><a href="create_drive.php"><i class="fas fa-plus-circle"></i> Create a Drive</a></li>
+            <li class="nav-item"><a href="results.php"><i class="fas fa-trophy"></i> Result</a></li>
+            <li class="nav-item"><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li class="nav-item"><a href="settings.php"><i class="fas fa-cog"></i> Settings</a></li>
         <?php endif; ?>
     </ul>
 

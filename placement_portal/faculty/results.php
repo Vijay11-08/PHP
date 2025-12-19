@@ -16,7 +16,14 @@ require_once '../includes/header.php';
 require_once '../includes/sidebar.php';
 ?>
 
-<div class="page-header"><h1 class="page-title">Placement Results</h1></div>
+<div class="page-header">
+    <h1 class="page-title">Placement Results</h1>
+    <div>
+        <button onclick="new TableExporter('resTable', 'faculty_results').exportToExcel()" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Excel</button>
+        <button onclick="new TableExporter('resTable', 'faculty_results').exportToCSV()" class="btn btn-sm btn-info"><i class="fas fa-file-csv"></i> CSV</button>
+        <button onclick="new TableExporter('resTable', 'faculty_results').exportToPDF()" class="btn btn-sm btn-danger"><i class="fas fa-file-pdf"></i> PDF</button>
+    </div>
+</div>
 
 <div class="card">
     <input type="text" id="resInput" onkeyup="filterTable('resInput', 'resTable')" placeholder="Search..." class="form-control" style="margin-bottom:10px; width:200px;">

@@ -157,6 +157,154 @@
 
     // Global registry for inline onclick handlers
     window.tableManagers = {};
+
+    // Restore simple filter function for non-paginated tables or legacy support
+    function filterTable(inputId, tableId) {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById(inputId);
+        filter = input.value.toUpperCase();
+        table = document.getElementById(tableId);
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) { // Start at 1 to skip header
+            var rowVisible = false;
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        rowVisible = true;
+                        break;
+                    }
+                }
+            }
+            tr[i].style.display = rowVisible ? "" : "none";
+        }
+    }
+
+    class TableExporter {
+        constructor(tableId, filename = 'export') {
+            this.tableId = tableId;
+            this.filename = filename;
+        }
+
+        getData() {
+            // Check if managed by TableManager to get filtered data
+            if(window.tableManagers && window.tableManagers[this.tableId]) {
+                const manager = window.tableManagers[this.tableId];
+                // Get headers
+                const headers = Array.from(manager.table.querySelectorAll('thead th')).map(th => th.innerText);
+                // Get data from filtered rows
+                const data = manager.filteredRows.map(row => 
+                    Array.from(row.querySelectorAll('td')).map(td => td.innerText)
+                );
+                return { headers, data };
+            }
+
+            // Fallback to simple DOM scraping (visible rows only?)
+            // If user wants "selected data", and no TableManager, we assume visible rows are what they want.
+            const table = document.getElementById(this.tableId);
+            const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.innerText);
+            
+            // Get visible rows only if no manager, or all rows? 
+            // Let's get all rows associated with tbody for fallback
+            const rows = Array.from(table.querySelectorAll('tbody tr'))
+                .filter(tr => tr.style.display !== 'none') // Respect current filter
+                .map(row => Array.from(row.querySelectorAll('td')).map(td => td.innerText));
+                
+            return { headers, data: rows };
+        }
+
+        exportToExcel() {
+            try {
+                if(typeof XLSX === 'undefined') { alert('Error: XLSX library not loaded.'); return; }
+                
+                const { headers, data } = this.getData();
+                
+                // Add Title Row
+                const title = [this.filename.toUpperCase().replace(/_/g, ' ')];
+                const exportData = [title, [], headers, ...data]; // Title, Empty row, Headers, Data
+                
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.aoa_to_sheet(exportData);
+                
+                // Merge title cells
+                if(!ws['!merges']) ws['!merges'] = [];
+                ws['!merges'].push({ s: {r:0, c:0}, e: {r:0, c:headers.length-1} });
+                
+                XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+                XLSX.writeFile(wb, this.filename + '.xlsx');
+            } catch(e) {
+                console.error(e);
+                alert('Export Error: ' + e.message);
+            }
+        }
+
+        exportToCSV() {
+            this.exportToExcel(); // CSV is similar enough for simple use case, or use specific CSV writer if needed.
+            // Actually let's just use the same logic but save as CSV if XLSX supports it easily, 
+            // but standard XLSX.writeFile can save as CSV based on extension.
+            // However, the function name suggests specific behavior.
+            
+            try {
+                if(typeof XLSX === 'undefined') { alert('Error: XLSX library not loaded.'); return; }
+                
+                const { headers, data } = this.getData();
+                const ws = XLSX.utils.aoa_to_sheet([headers, ...data]);
+                const csv = XLSX.utils.sheet_to_csv(ws);
+                
+                // Download manually
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement("a");
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", this.filename + ".csv");
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch(e) {
+                console.error(e);
+                alert('Export Error: ' + e.message);
+            }
+        }
+
+        exportToPDF() {
+            try {
+                if(typeof window.jspdf === 'undefined') { alert('Error: jsPDF library not loaded.'); return; }
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                const { headers, data } = this.getData();
+                
+                doc.autoTable({
+                    head: [headers],
+                    body: data,
+                    startY: 20,
+                    theme: 'striped',
+                    headStyles: { fillColor: [41, 128, 185], fontStyle: 'bold' }, // Primary Color
+                    didDrawPage: (data) => {
+                        // Header
+                        doc.setFontSize(18);
+                        doc.text(this.filename.toUpperCase().replace(/_/g, ' '), 14, 15);
+                        
+                        // Footer
+                        const str = 'Page ' + doc.internal.getNumberOfPages();
+                        doc.setFontSize(10);
+                        const pageSize = doc.internal.pageSize;
+                        const pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
+                        doc.text(str, data.settings.margin.left, pageHeight - 10);
+                        doc.text('Generated: ' + new Date().toLocaleDateString(), 150, pageHeight - 10);
+                    }
+                });
+                
+                doc.save(this.filename + '.pdf');
+            } catch(e) {
+                console.error(e);
+                alert('PDF Export Error: ' + e.message);
+            }
+        }
+    }
     </script>
 </body>
 </html>

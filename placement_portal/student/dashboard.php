@@ -4,7 +4,7 @@ require_once '../config/db.php';
 checkAuth('student');
 
 $user_id = $_SESSION['user_id'];
-$jobs = $pdo->query("SELECT * FROM jobs ORDER BY created_at DESC")->fetchAll();
+$jobs = $pdo->query("SELECT * FROM jobs WHERE status='approved' ORDER BY created_at DESC")->fetchAll();
 $applied_stmt = $pdo->prepare("SELECT job_id FROM applications WHERE student_id = ?");
 $applied_stmt->execute([$user_id]);
 $applied_jobs = $applied_stmt->fetchAll(PDO::FETCH_COLUMN);

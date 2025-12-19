@@ -15,7 +15,14 @@ require_once '../includes/header.php';
 require_once '../includes/sidebar.php';
 ?>
 
-<div class="page-header"><h1 class="page-title">Registered Companies</h1></div>
+<div class="page-header">
+    <h1 class="page-title">Registered Companies</h1>
+    <div>
+        <button onclick="new TableExporter('compTable', 'companies_list').exportToExcel()" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Excel</button>
+        <button onclick="new TableExporter('compTable', 'companies_list').exportToCSV()" class="btn btn-sm btn-info"><i class="fas fa-file-csv"></i> CSV</button>
+        <button onclick="new TableExporter('compTable', 'companies_list').exportToPDF()" class="btn btn-sm btn-danger"><i class="fas fa-file-pdf"></i> PDF</button>
+    </div>
+</div>
 
 <div class="card">
     <input type="text" id="compInput" onkeyup="filterTable('compInput', 'compTable')" placeholder="Search Company..." class="form-control" style="margin-bottom:10px; width:200px;">

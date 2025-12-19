@@ -41,7 +41,14 @@ foreach ($apps as $a) {
 }
 ?>
 
-<div class="page-header"><h1 class="page-title">Placement Drive Results</h1></div>
+<div class="page-header">
+    <h1 class="page-title">Placement Drive Results</h1>
+    <div>
+        <button onclick="new TableExporter('allTable', 'placement_results').exportToExcel()" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Excel</button>
+        <button onclick="new TableExporter('allTable', 'placement_results').exportToCSV()" class="btn btn-sm btn-info"><i class="fas fa-file-csv"></i> CSV</button>
+        <button onclick="new TableExporter('allTable', 'placement_results').exportToPDF()" class="btn btn-sm btn-danger"><i class="fas fa-file-pdf"></i> PDF</button>
+    </div>
+</div>
 
 <!-- Stats Cards -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">

@@ -383,4 +383,5 @@ $decoded = json_decode($json, true); // true for associative array
 echo "Decoded Name: " . $decoded['name'] . "<br>";
 
 echo "<br><br><br>";
+
 ?>

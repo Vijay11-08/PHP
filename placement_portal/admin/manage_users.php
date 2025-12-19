@@ -9,7 +9,28 @@ if (isset($_GET['delete'])) {
     header("Location: manage_users.php?msg=Deleted");
 }
 
-$users = $pdo->query("SELECT * FROM users ORDER BY created_at DESC")->fetchAll();
+$where = [];
+$params = [];
+
+if (isset($_GET['role']) && !empty($_GET['role'])) {
+    $where[] = "role = ?";
+    $params[] = $_GET['role'];
+}
+
+if (isset($_GET['status']) && !empty($_GET['status'])) {
+    $where[] = "status = ?";
+    $params[] = $_GET['status'];
+}
+
+$sql = "SELECT * FROM users";
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
+}
+$sql .= " ORDER BY created_at DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$users = $stmt->fetchAll();
 
 $pageTitle = "Manage Users";
 require_once '../includes/header.php';
@@ -18,7 +39,12 @@ require_once '../includes/sidebar.php';
 
 <div class="page-header">
     <h1 class="page-title">Manage Users</h1>
-    <a href="add_user.php" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New User</a>
+    <div>
+        <button onclick="new TableExporter('userTable', 'users_list').exportToExcel()" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Excel</button>
+        <button onclick="new TableExporter('userTable', 'users_list').exportToCSV()" class="btn btn-sm btn-info"><i class="fas fa-file-csv"></i> CSV</button>
+        <button onclick="new TableExporter('userTable', 'users_list').exportToPDF()" class="btn btn-sm btn-danger"><i class="fas fa-file-pdf"></i> PDF</button>
+        <a href="add_user.php" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New User</a>
+    </div>
 </div>
 
 <div class="card">

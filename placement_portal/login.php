@@ -72,7 +72,7 @@ require_once 'includes/navbar.php';
         </form>
         
         <div style="margin-top:20px; font-size: 0.8rem; color: #888; text-align: center; border-top: 1px solid #eee; padding-top: 10px;">
-            Demo: admin / password
+       
         </div>
     </div>
 </div>
